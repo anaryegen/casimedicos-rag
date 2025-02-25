@@ -343,10 +343,10 @@ def build_prompt(example:dict,
 		fewshot_examples = fewshot_file[:shot]
 		for fe in fewshot_examples:
 			data = json.loads(fe)
-			ex.append(f"Question: {data['full_question'].strip()}'\n' Options:\n {data['options'].strip()}\n Correct answer is: {data['correction_option']}\n")
+			ex.append(f"Question: {data['full_question']}'\n' Options:\n {data['options']}\n Correct answer is: {data['correct_option']}\n")
 		question_text = f"{qtype}: {full_question}"
-		options_text = "\n".join([f'{i}. {option.strip()}' for i, option in options.items() if isinstance(option, str)])
-		answer_text = f"{correct_option}. {options[str(example['correct_option'])].strip()}"
+		options_text = "\n".join([f'{i}. {option}' for i, option in options.items() if isinstance(option, str)])
+		answer_text = f"{correct_option}. {options[str(example['correct_option'])]}"
 		# priority_text = template.format(grounding="", question=question_text, options=options_text, answer=f"{correct_option}.")
 		# grounding_text, num_docs_in = build_grounding(priority_text, grounding_entities, groundings, grounding_langs, tokenizer, max_length)
 		input_text = template.format(fewshot_example='\n'.join(ex), question=question_text, options=options_text, answer="")
@@ -808,6 +808,7 @@ class CasimedicosDataset(Dataset):
 			examples = random.sample(examples, self.max_examples)
 		# print("EXAMPLES: ", examples)
 		# Multithread batch tokenization is giving RecursionError: maximum recursion depth exceeded
+		print('NUM WORKERS: ', num_workers)
 		if num_workers <= 1:
 			return batch_tokenization(
 				tokenizer=tokenizer,
@@ -841,9 +842,9 @@ class CasimedicosDataset(Dataset):
 				self.mark_correct,
 				self.grounding_langs,
 				self.max_rag_docs,
-				self.shot
+				shot=self.shot  # Add this line
 			)
-			print("TOKENIZER_FN: ", tokenizer_fn)
+			
 			with Pool(num_workers) as p:
 				tokenized_examples = p.starmap(
 					tokenizer_fn,

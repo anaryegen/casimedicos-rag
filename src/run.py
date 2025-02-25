@@ -91,7 +91,7 @@ def train_seq2seq(
             is_encoder_decoder=model.config.is_encoder_decoder,
             inference=False,
             prompt_loss_weight=data_args.prompt_loss_weight,
-            shot=custom_args.shot,
+            shot=0,
             prompt_style=data_args.prompt_style,
             grounding_entities=data_args.grounding_entities,
             grounding_langs=data_args.grounding_langs,
@@ -111,6 +111,7 @@ def train_seq2seq(
             max_length=data_args.max_seq_length,
             is_encoder_decoder=model.config.is_encoder_decoder,
             inference=False,
+            shot=0,
             prompt_loss_weight=0.0,
             prompt_style=data_args.prompt_style,
             grounding_entities=data_args.grounding_entities,
@@ -298,7 +299,7 @@ def inference_seq2seq(
 
         output_dir = training_args.output_dir if checkpoint_path is None else checkpoint_path
         if training_args.predict_with_generate:
-            output_path = f"{os.path.join(output_dir,test_dataset_name)}.{shot}_shot_predictions.jsonl"
+            output_path = f"{os.path.join(output_dir,test_dataset_name)}.{custom_args.shot}_shot_predictions.jsonl"
 
             predictions = predictions.predictions
             questions = [example["input_ids"] for example in test_dataset]
