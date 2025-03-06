@@ -1,4 +1,39 @@
-# MedExpQA
+# Casimedicos-rag
+
+To launch run the `.sh` script with the followiing command: 
+```
+for SHOT in 0 1 2 3 4 5
+do
+for LANG in en es it fr
+do
+	python3 ./src/run.py --shot $SHOT --config_file configs/$LANG/zero_shot/Qwen2.5_7B_none.yaml
+done
+done
+```
+Experiments: 
+
+- `Q(uestion) + O(ptions)`
+
+    
+
+| Experiments | Mode| Status |    
+|-------------|---  |-----   |
+| zero-shot   |  Q + O   | ✅     | 
+|few-shot     |  Q + O   | ✅     | 
+|fine-tuning  |  Q + O   | ✅     | 
+| multilingual RAG | Q + D + O | ⌛️     |    
+*D == Document
+
+- `Question + ~CoT/Explanations + O`
+
+| Experiments | Mode| Status |    
+|-------------|---  |-----   |
+| zero-shot   |  Q + CoT + O   |     | 
+|few-shot     |  Q + CoT + O   |     | 
+|fine-tuning  |  Q + CoT + O   |     | 
+<!-- | multilingual RAG | Q + D + O |     |  -->
+
+<!-- # MedExpQA
 This repository contains code for [MedExpQA: Multilingual Benchmarking of Large Language
 Models for Medical Question Answering]().
 
@@ -20,7 +55,7 @@ Download the datasets [here](https://huggingface.co/datasets/HiTZ/MedExpQA) and 
 
 <!--- ## Model checkpoints -->
 <!--- Download model LoRA adapter checkpoints [here]() and place each model's folder in `./out/experiments/finetuned/`. -->
-
+<!-- 
 ## Configuration codenames
 These are the internal codenames for grounding configurations:
 - **None** `none`
@@ -47,7 +82,7 @@ You can use one of the fine-tuning configurations under the `fine_tuning` config
 `do_eval: false`. <!--- To load the adapter you have two options: -->
 <!--- 1. Load the adapter directly from HuggingFace and adding the `lora_weights_name_or_path` parameter to the configuration you want to launch. For example: `lora_weights_name_or_path: HiTZ/MedExpQA/Mistral-7b-rag-max-EN` -->
 <!--- 2. Download the [model LoRA adapter checkpoints]() and leave the checkpoints in `out/experiments/finetuned/`. -->
-Inferences are launched in the same way as trainings:
+<!-- Inferences are launched in the same way as trainings:
 ```
 export PYTHONPATH="$PWD/src"
 LANG="en" # Langue of the CasiMedicos dataset. Can be [en | es | fr | it]
@@ -61,4 +96,4 @@ Write the paths to the folders were the prediction files are stored on a file (a
 ```
 export PYTHONPATH="$PWD/src"
 python3 ./src/model/casimedicosmt5/evaluate_predictions.py configs/predictions_to_eval.txt
-```
+``` --> 
