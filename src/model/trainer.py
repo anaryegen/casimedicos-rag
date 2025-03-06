@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from torch.utils.data import Dataset
-from torch.utils.data.dataset import Iterable, IterableDataset, T_co
+from torch.utils.data.dataset import Iterable, IterableDataset, _T_co
 
 from model.config import ModelArguments
 from datasource.casimedicos.dataset import CasimedicosDataset
@@ -361,7 +361,7 @@ class CasimedicosTrainer(Seq2SeqTrainer):
         torch.save(self.args, os.path.join(output_dir, TRAINING_ARGS_NAME))
 
 
-class ConcatDataset(Dataset[T_co]):
+class ConcatDataset(Dataset[_T_co]):
     r"""Dataset as a concatenation of multiple datasets.
 
     This class is useful to assemble different existing datasets.
