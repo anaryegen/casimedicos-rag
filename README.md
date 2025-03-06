@@ -22,6 +22,7 @@ Experiments:
 |few-shot     |  Q + O   | ✅     | 
 |fine-tuning  |  Q + O   | ✅     | 
 | multilingual RAG | Q + D + O | ⌛️     |    
+
 *D == Document
 
 - `Question + ~CoT/Explanations + O`
