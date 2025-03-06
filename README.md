@@ -32,6 +32,11 @@ Experiments:
 | zero-shot   |  Q + CoT + O   |     | 
 |few-shot     |  Q + CoT + O   |     | 
 |fine-tuning  |  Q + CoT + O   |     | 
+
+## Results [link](https://docs.google.com/spreadsheets/d/1c7Po3dkRZWfrvEoRnxXEsr6B4zZ_Hgut8QTTsN89kf4/edit?gid=0#gid=0)
+## Colab [link](https://colab.research.google.com/drive/1fyVEt178rkd_ifP1SxD2j75N4C-unawL#scrollTo=GQZK1PbRbWN7) with potential EDA  
+
+
 <!-- | multilingual RAG | Q + D + O |     |  -->
 
 <!-- # MedExpQA
