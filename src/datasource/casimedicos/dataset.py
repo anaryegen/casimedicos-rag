@@ -50,14 +50,14 @@ STRINGS_MULTI_LANG = {
     PROMPT_RAG: {"es":"", "en":"", "it":"", "fr":""},
 	PROMPT_ZERO_SHOT: {"es":"", "en":"", "it":"", "fr":""},
 	PROMPT_FEW_SHOT: {"es":"", "en":"", "it":"", "fr":""},
-    PROMPT_01_CLEAN: {"es": " La opción correcta es: ", "en": " The correct answer is: ", "it": " La risposta corretta è: ", "fr": " La bonne réponse est: "},
+    PROMPT_01_CLEAN: {"es": "La opción correcta es: ", "en": "The correct answer is: ", "it": "La risposta corretta è: ", "fr": "La bonne réponse est: "},
 }
 
 PROMPT_TEMPLATES = {
 	PROMPT_ZERO_SHOT: {
 		"en": ("You are a helpful medical expert, and your task is to answer a multi-choice medical question using"
 				" the relevant documents. Please choose the answer from the provided options. Your responses will "
-				"be used for research purposes only, so please have a definite answer.\n"
+				"be used for research purposes only, so please have a definite answer. Provide only the correct answer. Do not explain your answer. Do not hallucinate.\n"
 				# "Here are the relevant documents:\n"
 				# "{grounding}\n"
 				"Here is the question:\n"
@@ -68,7 +68,7 @@ PROMPT_TEMPLATES = {
 		"es": ("Eres un experto médico y tu tarea consiste en responder a una pregunta médica de test utilizando tu "
 			  "conocimiento y los siguientes documentos relevantes. Por favor, elige la respuesta entre las opciones proporcionadas. "
 			  "Tus respuestas se utilizarán únicamente con fines de investigación, así que te rogamos que proporciones una "
-			  "respuesta definitiva.\n"
+			  "respuesta definitiva. Proporciona únicamente la respuesta correcta. No expliques tu respuesta. No alucines.\n"
 			#   "Estos son los documentos relevantes:\n"
 			#   "{grounding}\n"
 			  "Aquí está la pregunta:\n"
@@ -79,7 +79,7 @@ PROMPT_TEMPLATES = {
 		"it": ("Sei un medico esperto e il tuo compito consiste nel rispondere a una domanda di test medico utilizzando le "
 			  "tue conoscenze e i documenti successivi rilevanti. Per favore, scegli la risposta tra le opzioni fornite. Le "
 			  "tue risposte verranno utilizzate esclusivamente con fini di indagine, quindi ti chiediamo di fornirti una "
-			  "risposta definitiva.\n"
+			  "risposta definitiva. Fornisci solo la risposta corretta. Non spiegare la tua risposta. Non avere allucinazioni.\n"
 			#   "Questi sono i documenti rilevanti:\n"
 			#   "{grounding}\n"
 			  "Ecco la domanda:\n"
@@ -90,7 +90,7 @@ PROMPT_TEMPLATES = {
 		"fr": ("Vous êtes un expert en médecine et votre tâche consiste à répondre à une question d’examen médical en "
 			  "utilisant vos connaissances et les documents suivants. Veuillez choisir la réponse parmi les options "
 			  "proposées. Vos réponses seront utilisées uniquement à des fins de recherche, veuillez donc fournir une "
-			  "réponse claire.\n"
+			  "réponse claire. Donnez uniquement la bonne réponse. N'expliquez pas votre réponse. N'ayez pas d'hallucinations.\n"
 			#    "Voici les documents pertinents:\n"
 			#   "{grounding}\n"
 			  "Voici la question:\n"
@@ -102,10 +102,10 @@ PROMPT_TEMPLATES = {
 	PROMPT_FEW_SHOT: {
 		"en": ("You are a helpful medical expert, and your task is to answer a multi-choice medical question using"
 				" the relevant documents. Please choose the answer from the provided options. Your responses will "
-				"be used for research purposes only, so please have a definite answer.\n"
+				"be used for research purposes only, so please have a definite answer. Provide only the correct answer. Do not explain your answer. Do not hallucinate.\n"
 				"Here is an example:\n"
 				"{fewshot_example}\n"
-				"Now, here is the question you have answer:\n"
+				"Here is the question:\n"
 				"{question}\n"
 				"Here are the potential choices:\n"
 				"{options}\n"
@@ -113,7 +113,7 @@ PROMPT_TEMPLATES = {
 		"es": ("Eres un experto médico y tu tarea consiste en responder a una pregunta médica de test utilizando tu "
 			  "conocimiento y los siguientes documentos relevantes. Por favor, elige la respuesta entre las opciones proporcionadas. "
 			  "Tus respuestas se utilizarán únicamente con fines de investigación, así que te rogamos que proporciones una "
-			  "respuesta definitiva.\n"
+			  "respuesta definitiva. Proporciona únicamente la respuesta correcta. No expliques tu respuesta. No alucines.\n"
 			  "He aquí un ejemplo:\n"
 			  "{fewshot_example}\n"
 			  "Aquí está la pregunta:\n"
@@ -124,7 +124,7 @@ PROMPT_TEMPLATES = {
 		"it": ("Sei un medico esperto e il tuo compito consiste nel rispondere a una domanda di test medico utilizzando le "
 			  "tue conoscenze e i documenti successivi rilevanti. Per favore, scegli la risposta tra le opzioni fornite. Le "
 			  "tue risposte verranno utilizzate esclusivamente con fini di indagine, quindi ti chiediamo di fornirti una "
-			  "risposta definitiva.\n"
+			  "risposta definitiva. Fornisci solo la risposta corretta. Non spiegare la tua risposta. Non avere allucinazioni.\n"
 			  "Ecco un esempio:\n"
 			  "{fewshot_example}\n"
 			  "Ecco la domanda:\n"
@@ -135,10 +135,10 @@ PROMPT_TEMPLATES = {
 		"fr": ("Vous êtes un expert en médecine et votre tâche consiste à répondre à une question d’examen médical en "
 			  "utilisant vos connaissances et les documents suivants. Veuillez choisir la réponse parmi les options "
 			  "proposées. Vos réponses seront utilisées uniquement à des fins de recherche, veuillez donc fournir une "
-			  "réponse claire.\n"
+			  "réponse claire. Donnez uniquement la bonne réponse. N'expliquez pas votre réponse. N'ayez pas d'hallucinations.\n"
 			   "Voici un exemple:\n"
 			  "{fewshot_example}\n"
-			  "Voici la question:\n"
+			  "Maintenant, voici la question à laquelle vous devez répondre:\n"
 			  "{question}\n"
 			  "Voici les options possibles:\n"
 			  "{options}\n"
@@ -293,25 +293,25 @@ def build_prompt(example:dict,
 		grounding[GROUNDING_SPECIAL_ENTITIES["explanation_clean"]] = [clean_explanation]
 		grounding[GROUNDING_SPECIAL_ENTITIES["rag_cc"]] = rag_cc if max_rag_docs is None else rag_cc[:max_rag_docs]
 	lang = example["lang"] if "lang" in example else 'es'
-	train_data_path = train_data_path.replace('en', lang)
+	train_data_path = train_data_path.replace('.en', f'.{lang}')
 	grounding_entities = grounding_entities if grounding_entities is not None else []
 	if GROUNDING_SPECIAL_ENTITIES['explanation_clean'] in grounding_entities and "full_answer_no_ref" not in example:
 		logging.warning(f"'{GROUNDING_SPECIAL_ENTITIES['explanation_clean']}' is one of the grounding sources but this dataset doesn't contain 'full_answer_no_ref'. Are you using the right dataset?")
 	grounding_langs = grounding_langs if grounding_langs is not None else [lang] # Default grounding lang is example_lang
 
-	if prompt_style == PROMPT_01_CLEAN:
-		# Legacy way, this should be refactored and merged with PROMPT_02_MEDRAG implementation
-		text_answer = f"{correct_option} {options[str(example['correct_option'])].strip()}"
-		text = f"{qtype}: {full_question} "
-		text += ' '.join([f'{STRINGS_MULTI_LANG["option"][lang]}: {i} {option.strip()}' for i, option in options.items() if
-						  isinstance(option, str)])
-		taken_text = text + "//" + STRINGS_MULTI_LANG[prompt_style][lang] + text_answer
-		if len(grounding_entities) > 0:
-			grounding_text, num_docs_in = build_grounding(taken_text, grounding_entities, groundings, grounding_langs, tokenizer, max_length)
-			text += grounding_text
-		input_text = text
-		answer_text = text_answer
-		full_text = input_text + answer_text
+	# if prompt_style == PROMPT_01_CLEAN:
+	# 	# Legacy way, this should be refactored and merged with PROMPT_02_MEDRAG implementation
+	# 	text_answer = f"{correct_option} {options[str(example['correct_option'])].strip()}"
+	# 	text = f"{qtype}: {full_question} "
+	# 	text += ' '.join([f'{STRINGS_MULTI_LANG["option"][lang]}: {i} {option.strip()}' for i, option in options.items() if
+	# 					  isinstance(option, str)])
+	# 	taken_text = text + "//" + STRINGS_MULTI_LANG[prompt_style][lang] + text_answer
+	# 	if len(grounding_entities) > 0:
+	# 		grounding_text, num_docs_in = build_grounding(taken_text, grounding_entities, groundings, grounding_langs, tokenizer, max_length)
+	# 		text += grounding_text
+	# 	input_text = text
+	# 	answer_text = text_answer
+	# 	full_text = input_text + answer_text
 
 	if shot == 0 and not max_rag_docs:
 	# if not max_rag_docs:
@@ -319,8 +319,6 @@ def build_prompt(example:dict,
 		question_text = f"{qtype}: {full_question}"
 		options_text = "\n".join([f'{i}. {option.strip()}' for i, option in options.items() if isinstance(option, str)])
 		answer_text = f"{correct_option}. {options[str(example['correct_option'])].strip()}"
-		# priority_text = template.format(grounding="", question=question_text, options=options_text, answer=f"{correct_option}.")
-		# grounding_text, num_docs_in = build_grounding(priority_text, grounding_entities, groundings, grounding_langs, tokenizer, max_length)
 		input_text = template.format(question=question_text, options=options_text, answer="")
 		full_text = template.format(question=question_text, options=options_text, answer=answer_text)
 	
@@ -339,11 +337,11 @@ def build_prompt(example:dict,
 		ex = []
 		fewshot_file = open(train_data_path).readlines()
 		random.shuffle(fewshot_file)
-		print("SHOT: ", shot)
 		fewshot_examples = fewshot_file[:shot]
 		for fe in fewshot_examples:
 			data = json.loads(fe)
-			ex.append(f"Question: {data['full_question']}'\n' Options:\n {data['options']}\n Correct answer is: {data['correct_option']}\n")
+			example_options_text = "\n".join([f'{i}. {option.strip()}' for i, option in data['options'].items() if isinstance(option, str)])
+			ex.append(f"Question: {str(data['full_question']).strip()}\nOptions:\n{example_options_text}\n{STRINGS_MULTI_LANG[PROMPT_01_CLEAN][lang]}{str(data['correct_option']).strip()}\n")
 		question_text = f"{qtype}: {full_question}"
 		options_text = "\n".join([f'{i}. {option}' for i, option in options.items() if isinstance(option, str)])
 		answer_text = f"{correct_option}. {options[str(example['correct_option'])]}"
@@ -356,7 +354,6 @@ def build_prompt(example:dict,
 	if calc_stats:
 		doc_ids = [doc["id"] for doc in example["rag"]["clinical_case_options"]["MedCorp"]["RRF-2"]] if "rag" in example else []
 		stats = {"num_docs_in": num_docs_in, "doc_sources": doc_ids}
-	print("INPUT_TEXT", input_text)
 	return input_text, answer_text, full_text, stats
 
 def batch(iterable: Sized, n=1) -> Iterator:
@@ -472,7 +469,7 @@ def prepare_data(
 															 max_length, 
 															 max_rag_docs=max_rag_docs,
 															 )
-		print('BUILD PROMPT: ', input_text, answer_text, full_text)
+		
 
 	if is_encoder_decoder:
 		model_inputs = tokenizer(
@@ -806,9 +803,8 @@ class CasimedicosDataset(Dataset):
 
 		if self.max_examples is not None and self.max_examples < len(examples):
 			examples = random.sample(examples, self.max_examples)
-		# print("EXAMPLES: ", examples)
+		
 		# Multithread batch tokenization is giving RecursionError: maximum recursion depth exceeded
-		print('NUM WORKERS: ', num_workers)
 		if num_workers <= 1:
 			return batch_tokenization(
 				tokenizer=tokenizer,

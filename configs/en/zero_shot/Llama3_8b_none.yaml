@@ -1,5 +1,5 @@
 #Training args
-model_name_or_path: meta-llama/Llama-3.1-8B
+model_name_or_path: meta-llama/Llama-3.1-8B-Instruct
 torch_dtype: bfloat16
 use_lora: true
 quantization: 4
@@ -16,8 +16,8 @@ validation_files:
   - data/dev.en.casimedicos.rag.jsonl
 test_files:
   - data/test.en.casimedicos.rag.jsonl
-max_seq_length: 2048
-generation_max_length: 2098
+max_seq_length: 5000
+generation_max_length: 5015
 #max_new_tokens: 50
 ignore_pad_token_for_loss: true
 prompt_loss_weight: 0.0
@@ -28,7 +28,7 @@ mark_correct: false
 
 
 # checkpoint settings
-output_dir: out/experiments/zeroshot/en_LLaMA3_8b-base_none
+output_dir: out/experiments/zeroshot/en_LLaMA3_8b-instruct_none
 overwrite_output_dir: true
 load_best_model_at_end: false
 #metric_for_best_model: eval_dev.en.casimedicos.grounded_loss
@@ -57,7 +57,7 @@ generation_num_beams: 1
 #temperature: 0.7
 #top_k: 20
 #top_p: 0.90
-#repetition_penalty: 1.2
+# repetition_penalty: 1.2
 
 # optimizer settings
 optim: adamw_torch_fused
@@ -81,7 +81,7 @@ logging_first_step: true
 logging_steps: 25
 report_to: wandb
 #report_to: none
-run_name: "en_casimedicos_LLaMA2_13b_none"
+run_name: "en_casimedicos_LLaMA3_8b-it_none"
 disable_tqdm: false
 
 # hub settings
