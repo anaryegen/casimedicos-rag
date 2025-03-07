@@ -58,6 +58,8 @@ def train_seq2seq(
     )
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
+    model.config.pad_token_id = tokenizer.pad_token_id
+
     logging.info("Loading datasets...")
     training_datasets_path = [
          f"{dataset_path}" for dataset_path in data_args.train_files

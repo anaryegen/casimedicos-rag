@@ -17,7 +17,7 @@ validation_files:
 test_files:
   - data/test.it.casimedicos.rag.jsonl
 max_seq_length: 5000
-generation_max_length: 5015
+generation_max_length: 2055
 #max_new_tokens: 50
 ignore_pad_token_for_loss: true
 prompt_loss_weight: 0.0
@@ -41,7 +41,7 @@ save_total_limit: 100
 do_train: false
 do_eval: false
 do_predict: true
-evaluation_strategy: "epoch"
+evaluation_strategy: "no"
 #eval_steps: 500
 eval_delay: 0
 predict_with_generate: true
