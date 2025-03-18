@@ -40,7 +40,7 @@ def train_seq2seq(
 
     model, tokenizer = load_model(
         inference=False,
-        model_weights_name_or_path=custom_args.model_name_or_path,
+        model_weights_name_or_path=model_args.model_name_or_path,
         quantization=model_args.quantization,
         use_lora=model_args.use_lora,
         lora_r=model_args.lora_r,
@@ -128,7 +128,7 @@ def train_seq2seq(
         model=model,
         tokenizer=tokenizer,
         train_dataset=train_dataset,
-        eva_dataset=dev_datasets,
+        eval_dataset=dev_datasets,
         args=training_args,
         data_collator=DataCollatorForCasimedicos(
             tokenizer,
@@ -261,7 +261,7 @@ def inference_seq2seq(
         use_flash_attention=model_args.use_flash_attention,
         max_memory_MB=model_args.max_memory_MB,
     )
-
+    model.config.pad_token_id = tokenizer.pad_token_id 
     trainer = CasimedicosTrainer(
         model=model,
         args=training_args,

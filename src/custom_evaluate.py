@@ -34,7 +34,7 @@ def eval_predictions(file_path: str):
         assert len(preds) == len(trues), "Length of predictions and gold answers are not the same. Please make sure you are passing the right data"\
 
     accuracy = accuracy_metric.compute(references=trues, predictions=preds)
-
+    print(len(preds))
     print(f"\n\nAccuracy for file: {file_path} is {accuracy}")
 
 if __name__ == "__main__":

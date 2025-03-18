@@ -1,5 +1,5 @@
 #Training args
-model_name_or_path: Qwen/Qwen2.5-14B-Instruct-1M
+model_name_or_path: Qwen/Qwen2.5-14B
 torch_dtype: bfloat16
 use_lora: true
 quantization: 4
@@ -28,7 +28,7 @@ mark_correct: false
 
 
 # checkpoint settings
-output_dir: out/experiments/finetuned/en_Qwen/Qwen2.5-14B-Instruct-1M
+output_dir: out/experiments/finetuned/en_Qwen/Qwen2.5-14B-base
 overwrite_output_dir: true
 load_best_model_at_end: false
 #metric_for_best_model: eval_dev.en.casimedicos.grounded_loss
